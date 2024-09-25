@@ -41,8 +41,8 @@ class MainUtils:
        
 
 
-       @staticmethod
-       def save_object(file_path: str, obj: object) -> None:
+    @staticmethod
+    def save_object(file_path: str, obj: object) -> None:
           logging.info("Enter the save-object method of MainUtils class")
           
           try:
@@ -72,11 +72,11 @@ class MainUtils:
     @staticmethod
     def load_object(file_path):
         try:
-            with open(file_oath, 'rb') as file_obj:
+            with open(file_path, 'rb') as file_obj:
                 return pickle.load(file_obj)
             
         except Exception as e:
-            logging.info("Exception occured in load_object function utils")
+            logging.info("Exception Occured in load_object function utils")
             raise CustomException(e, sys)   
 
 

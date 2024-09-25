@@ -10,7 +10,6 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, train_test_split
 from src.constant import *
-# from exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import MainUtils
 
@@ -41,7 +40,7 @@ class ModelTrainer:
         }
         
         
-    def evaluate_models(self, x, y, models):
+    def evaluate_models(self, X, y, models):
         
         try:
             x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state=42)
@@ -67,12 +66,15 @@ class ModelTrainer:
                 report[list(model.keys())[i]] = test_model_score
                 
             return report
+        
+        
+        except Exception as e:
+            raise CustomException(e,sys)
                 
              
             
             
-        except Exception as e:
-            raise CustomException(e, sys)
+        
         
         
     def get_best_model(self,

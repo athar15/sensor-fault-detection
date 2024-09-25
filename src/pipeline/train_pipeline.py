@@ -8,7 +8,7 @@ from src.exception import CustomException
 
 
 class TrainingPipeline:
-    
+
     def start_data_ingestion(self):
         try:
             data_ingestion = DataIngestion()
@@ -16,10 +16,9 @@ class TrainingPipeline:
             return feature_store_file_path
         
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e,sys)
         
-        
-        
+    
     def start_data_transformation(self,feature_store_file_path):
         try:
             data_transformation = DataTransformation(feature_store_file_path=feature_store_file_path)
@@ -27,7 +26,7 @@ class TrainingPipeline:
             return train_arr, test_arr, preprocessor_path
         except Exception as e:
             raise CustomException(e,sys)
-        
+                
         
         
     def start_model_training(self, train_arr,test_arr):
@@ -37,9 +36,11 @@ class TrainingPipeline:
                 train_arr, test_arr
             )
             return model_score
+        
         except Exception as e:
             raise CustomException(e,sys)
         
+                
     def run_pipeline(self):
         try:
             feature_store_file_path = self.start_data_ingestion()
