@@ -10,6 +10,7 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, train_test_split
 from src.constant import *
+from src.exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import MainUtils
 
@@ -43,7 +44,7 @@ class ModelTrainer:
     def evaluate_models(self, X, y, models):
         
         try:
-            x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state=42)
+            x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=42)
             
             report = {}
             
@@ -63,7 +64,7 @@ class ModelTrainer:
                 test_model_score = accuracy_score(y_test, y_test_pred)
                 
                 
-                report[list(model.keys())[i]] = test_model_score
+                report[list(models.keys())[i]] = test_model_score
                 
             return report
         
@@ -134,7 +135,7 @@ class ModelTrainer:
         try:
             
             
-            model_param_grid = self.utils.read_yaml_file(self.model_trainer_config.model_config_file_path)["model_selection"]['model'][best_model_object]["search_param_grid"]
+            model_param_grid = self.utils.read_yaml_file(self.model_trainer_config.model_config_file_path)["model_selection"]["model"][best_model_name]["search_param_grid"]
             
             
             grid_search = GridSearchCV(
