@@ -64,7 +64,7 @@ class DataTransformation:
     
     def initiate_data_transformation(self):
 
-        logging.info("Entered initiate data transformation method of data transfomration class")
+        logging.info("Entered initiate data transformation method of data transformation class")
 
         try:
             dataframe = self.get_data(feature_store_file_path=self.feature_store_file_path)
