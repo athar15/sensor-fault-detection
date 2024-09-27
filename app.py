@@ -38,10 +38,10 @@ def upload():
         if request.method == 'POST':
             # it is a object of prediction pipeline
             
-            PredictionPipeline = PredictionPipeline(request)
+            Prediction_Pipeline = PredictionPipeline(request)
             
             # now we  are running this run pipeline method
-            prediction_file_detail = PredictionPipeline.run_pipeline()
+            prediction_file_detail = Prediction_Pipeline.run_pipeline()
             
             
             lg.info("prediction completed. Downloading prediction file")
